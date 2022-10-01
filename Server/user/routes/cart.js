@@ -4,7 +4,7 @@ const cartModal = require("../modals/cart-modal");
 
 const router = express.Router();
 
-router.post("/add", (req, res)=> {
+router.post("/addtocart", (req, res)=> {
     console.log(req.headers.authorization, req.body);
     try {
         const username = jwt.verify(req.headers.authorization, process.env.SECRET_KEY);
@@ -19,7 +19,7 @@ router.post("/add", (req, res)=> {
     
 });
 
-router.get("/", (req, res)=> {
+router.get("/cartitems", (req, res)=> {
     try {
         const username = jwt.verify(req.headers.authorization, process.env.SECRET_KEY);
         cartModal.find({username: username}).then((cart)=> {

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-router.get("/", (req, res)=> {
+router.get("/orders", (req, res)=> {
     try {
         const user = jwt.verify(req.headers.authorization, process.env.SECRET_KEY );
         res.status(200).send(user)
@@ -14,7 +14,7 @@ router.get("/", (req, res)=> {
     
     
 });
-router.post("/add", (req, res)=> {
+router.post("/addorders", (req, res)=> {
     ///{username: "", order_id: "", order_type: "prepaid/postpaid", item_id: "", order_status: ""}
     orderModal.create({username: req.body.username, order_id: req.body.orderid, order_type: req.body.ordertype
     ,item_id: req.body.itemid}).then(()=> {
